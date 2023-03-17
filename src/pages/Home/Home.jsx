@@ -1,9 +1,10 @@
 import { getTrendingMovies } from 'api';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export function Home() {
   const [trendMovie, setTrendMovie] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     const fetchTrend = async () => {
@@ -13,15 +14,14 @@ export function Home() {
 
     fetchTrend();
   }, []);
-  console.log(trendMovie);
+
   return (
     <div>
-      <h1>Hello word</h1>
       <ul>
         {trendMovie &&
           trendMovie.map(item => (
             <li key={item.id}>
-              <Link to={`/movies/${item.id}`}>
+              <Link to={`/movies/${item.id}`} state={{ from: location }}>
                 <p className="">{item.title}</p>
               </Link>
             </li>
@@ -30,3 +30,4 @@ export function Home() {
     </div>
   );
 }
+export default Home;
