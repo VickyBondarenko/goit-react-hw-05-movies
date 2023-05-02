@@ -22,7 +22,7 @@ export function Cast() {
   };
 
   return (
-    <div>
+    <CastList>
       {cast.length ? (
         cast.map(item => (
           <Item key={item.credit_id}>
@@ -33,7 +33,7 @@ export function Cast() {
                   : 'http://placehold.it/200x300/000/fff&text=no foto'
               }
               alt={item.name}
-              width={200}
+              width={250}
             ></img>
             <h2>{item.name}</h2>
             <p>
@@ -44,12 +44,22 @@ export function Cast() {
       ) : (
         <h2>We don't have any information of cast for this movie.</h2>
       )}
-    </div>
+    </CastList>
   );
 }
 export default Cast;
 
+const CastList = styled.ul`
+  display: grid;
+  padding: 20px 0;
+  margin: 0;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+`;
+
 const Item = styled.li`
   list-style: none;
-  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
